@@ -1,6 +1,4 @@
 .DS_Store
 xcuserdata
-Pods
-
-*.generated.swift
-!Strings.generated.swift
+.build
+Config.local.xcconfig

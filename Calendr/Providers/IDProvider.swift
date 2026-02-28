@@ -5,6 +5,8 @@
 //  Created by Paker on 29/10/2025.
 //
 
+import Foundation
+
 protocol IDProviding {
     associatedtype ID: Hashable
     func next() -> ID

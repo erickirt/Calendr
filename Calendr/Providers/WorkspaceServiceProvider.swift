@@ -4,6 +4,7 @@
 //
 //  Created by Paker on 21/02/2021.
 //
+import Foundation
 
 import AppKit.NSWorkspace
 import UniformTypeIdentifiers

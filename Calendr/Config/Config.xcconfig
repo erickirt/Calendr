@@ -1,0 +1,12 @@
+//
+//  Config.xcconfig
+//  Calendr
+//
+//  Created by Paker on 28/02/2026.
+//
+
+// ⚠️ Values must be mapped in Info.plist
+
+HTTPS=https:/$()/ // helper prefix for urls
+
+#include? "Config.local.xcconfig"

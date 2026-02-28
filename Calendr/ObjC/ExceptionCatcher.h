@@ -5,7 +5,7 @@
 //  Created by Paker on 06/04/2025.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface ExceptionCatcher : NSObject
 

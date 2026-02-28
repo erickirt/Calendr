@@ -89,13 +89,13 @@ class SettingsTests: UITestCase {
 
         showIcon.click()
         XCTAssertEqual(showIcon.value(), false)
-        XCTAssertNotIn(MenuBar.main.identifiers, Accessibility.MenuBar.Main.Icon.calendar)
-        XCTAssertIn(MenuBar.main.identifiers, "Friday 1 January 2021")
+        XCTAssertFalse(MenuBar.main.identifiers.contains(Accessibility.MenuBar.Main.Icon.calendar))
+        XCTAssertTrue(MenuBar.main.identifiers.contains("Friday 1 January 2021"))
 
         showIcon.click()
         XCTAssertEqual(showIcon.value(), true)
-        XCTAssertIn(MenuBar.main.identifiers, Accessibility.MenuBar.Main.Icon.calendar)
-        XCTAssertIn(MenuBar.main.identifiers, "Friday 1 January 2021")
+        XCTAssertTrue(MenuBar.main.identifiers.contains(Accessibility.MenuBar.Main.Icon.calendar))
+        XCTAssertTrue(MenuBar.main.identifiers.contains("Friday 1 January 2021"))
     }
 
     func testSettingsGeneral_toggleShowDate() {
@@ -110,13 +110,13 @@ class SettingsTests: UITestCase {
 
         showDate.click()
         XCTAssertEqual(showDate.value(), false)
-        XCTAssertIn(MenuBar.main.identifiers, Accessibility.MenuBar.Main.Icon.calendar)
-        XCTAssertNotIn(MenuBar.main.identifiers, "Friday 1 January 2021")
+        XCTAssertTrue(MenuBar.main.identifiers.contains(Accessibility.MenuBar.Main.Icon.calendar))
+        XCTAssertFalse(MenuBar.main.identifiers.contains("Friday 1 January 2021"))
 
         showDate.click()
         XCTAssertEqual(showDate.value(), true)
-        XCTAssertIn(MenuBar.main.identifiers, Accessibility.MenuBar.Main.Icon.calendar)
-        XCTAssertIn(MenuBar.main.identifiers, "Friday 1 January 2021")
+        XCTAssertTrue(MenuBar.main.identifiers.contains(Accessibility.MenuBar.Main.Icon.calendar))
+        XCTAssertTrue(MenuBar.main.identifiers.contains("Friday 1 January 2021"))
     }
 
     func testSettingsGeneral_toggleShowDateOffWithShowIconOff() {
@@ -135,14 +135,14 @@ class SettingsTests: UITestCase {
         showIcon.click()
         XCTAssertEqual(showIcon.value(), false)
         XCTAssertEqual(showDate.value(), true)
-        XCTAssertNotIn(MenuBar.main.identifiers, Accessibility.MenuBar.Main.Icon.calendar)
-        XCTAssertIn(MenuBar.main.identifiers, "Friday 1 January 2021")
+        XCTAssertFalse(MenuBar.main.identifiers.contains(Accessibility.MenuBar.Main.Icon.calendar))
+        XCTAssertTrue(MenuBar.main.identifiers.contains("Friday 1 January 2021"))
 
         showDate.click()
         XCTAssertEqual(showIcon.value(), true)
         XCTAssertEqual(showDate.value(), false)
-        XCTAssertIn(MenuBar.main.identifiers, Accessibility.MenuBar.Main.Icon.calendar)
-        XCTAssertNotIn(MenuBar.main.identifiers, "Friday 1 January 2021")
+        XCTAssertTrue(MenuBar.main.identifiers.contains(Accessibility.MenuBar.Main.Icon.calendar))
+        XCTAssertFalse(MenuBar.main.identifiers.contains("Friday 1 January 2021"))
     }
 
     func testSettingsGeneral_toggleShowIconOffWithShowDateOff() {
@@ -161,20 +161,20 @@ class SettingsTests: UITestCase {
         showDate.click()
         XCTAssertEqual(showIcon.value(), true)
         XCTAssertEqual(showDate.value(), false)
-        XCTAssertIn(MenuBar.main.identifiers, Accessibility.MenuBar.Main.Icon.calendar)
-        XCTAssertNotIn(MenuBar.main.identifiers, "Friday 1 January 2021")
+        XCTAssertTrue(MenuBar.main.identifiers.contains(Accessibility.MenuBar.Main.Icon.calendar))
+        XCTAssertFalse(MenuBar.main.identifiers.contains("Friday 1 January 2021"))
 
         showIcon.click()
         XCTAssertEqual(showIcon.value(), true)
         XCTAssertEqual(showDate.value(), false)
-        XCTAssertIn(MenuBar.main.identifiers, Accessibility.MenuBar.Main.Icon.calendar)
-        XCTAssertNotIn(MenuBar.main.identifiers, "Friday 1 January 2021")
+        XCTAssertTrue(MenuBar.main.identifiers.contains(Accessibility.MenuBar.Main.Icon.calendar))
+        XCTAssertFalse(MenuBar.main.identifiers.contains("Friday 1 January 2021"))
 
         showDate.click()
         XCTAssertEqual(showIcon.value(), false)
         XCTAssertEqual(showDate.value(), true)
-        XCTAssertNotIn(MenuBar.main.identifiers, Accessibility.MenuBar.Main.Icon.calendar)
-        XCTAssertIn(MenuBar.main.identifiers, "Friday 1 January 2021")
+        XCTAssertFalse(MenuBar.main.identifiers.contains(Accessibility.MenuBar.Main.Icon.calendar))
+        XCTAssertTrue(MenuBar.main.identifiers.contains("Friday 1 January 2021"))
     }
 
     func testSettingsGeneral_toggleShowNextEvent() {
@@ -210,25 +210,25 @@ class SettingsTests: UITestCase {
         let input = Settings.General.dateFormatInput
 
         XCTAssertEqual(dropdown.value(), "Friday 1 January 2021")
-        XCTAssertIn(MenuBar.main.identifiers, "Friday 1 January 2021")
+        XCTAssertTrue(MenuBar.main.identifiers.contains("Friday 1 January 2021"))
 
         dropdown.click()
         dropdown.menuItems.element(boundBy: 0).click()
 
         XCTAssertEqual(dropdown.value(), "01/01/2021")
-        XCTAssertIn(MenuBar.main.identifiers, "01/01/2021")
+        XCTAssertTrue(MenuBar.main.identifiers.contains("01/01/2021"))
 
         dropdown.click()
         dropdown.menuItems.allElementsBoundByIndex.last?.click()
 
         XCTAssertEqual(dropdown.value(), "Custom...")
-        XCTAssertIn(MenuBar.main.identifiers, "Fri 1 Jan 2021")
+        XCTAssertTrue(MenuBar.main.identifiers.contains("Fri 1 Jan 2021"))
 
         input.typeKey(.delete, modifierFlags: [])
-        XCTAssertIn(MenuBar.main.identifiers, "???")
+        XCTAssertTrue(MenuBar.main.identifiers.contains("???"))
 
         input.typeText("E")
-        XCTAssertIn(MenuBar.main.identifiers, "Fri")
+        XCTAssertTrue(MenuBar.main.identifiers.contains("Fri"))
     }
 
     func testSettingsGeneral_toggleShowWeekNumbers() throws {

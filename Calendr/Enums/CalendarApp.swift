@@ -4,6 +4,7 @@
 //
 //  Created by Paker on 15/06/2025.
 //
+import Foundation
 
 enum CalendarApp: String, CaseIterable {
     case calendar, notion

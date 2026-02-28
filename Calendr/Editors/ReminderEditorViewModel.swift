@@ -5,9 +5,11 @@
 //  Created by Paker on 23/10/2025.
 //
 
+import Foundation
+import Observation
 import RxSwift
 
-@Observable
+@Observation.Observable
 class ReminderEditorViewModel: HostingWindowControllerDelegate {
     
     var title = ""
@@ -32,13 +34,11 @@ class ReminderEditorViewModel: HostingWindowControllerDelegate {
         self.calendarService = calendarService
     }
 
-    var onCloseConfirmed: () -> Void = {
-        print("Close editor modal")
-    }
+    var onCloseConfirmed: (() -> Void)?
 
     func confirmClose() {
         isCloseConfirmationVisible = false
-        onCloseConfirmed()
+        onCloseConfirmed?()
     }
 
     func dismissError() {

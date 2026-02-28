@@ -117,7 +117,7 @@ class CalendarAppProviderTests: XCTestCase {
 
     // MARK: - Notion Calendar
 
-    func testOpenEvent_inNotionApp() async {
+    func testOpenEvent_inNotionApp() async throws {
         let openDateExpectation = expectation(description: "Open Date")
         let openEventExpectation = expectation(description: "Open Event")
 
@@ -143,12 +143,14 @@ class CalendarAppProviderTests: XCTestCase {
 
         await fulfillment(of: [openDateExpectation], timeout: 1)
 
+        let bundleId = try XCTUnwrap(Bundle.main.bundleIdentifier)
+
         workspace.didOpenURL = { url in
             XCTAssertEqual(
                 url.absoluteString,
                 "cron://showEvent?accountEmail=test%40example.com&iCalUID=12345" +
                 "&startDate=2025-01-01T12:10:05.000Z&endDate=2025-01-01T15:25:55.000Z" +
-                "&title=Title&ref=br.paker.Calendr"
+                "&title=Title&ref=\(bundleId)"
             )
             openEventExpectation.fulfill()
         }

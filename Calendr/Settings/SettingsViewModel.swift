@@ -443,7 +443,7 @@ class SettingsViewModel:
         }
 
         if let appId = defaultCalendarApp.lastValue(), !calendarAppOptions.contains(where: { $0.id == appId }) {
-            print("💡 Previous calendar app missing. Defaulting to Calendar.app")
+            // Previous calendar app missing. Defaulting to Calendar.app
             defaultCalendarAppObserver.onNext(.calendar)
         }
     }
